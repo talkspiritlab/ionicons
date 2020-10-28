@@ -61,8 +61,14 @@ async function optimizeSvgs(srcSvgData: SvgData[]) {
                 } else if (attr.name === 'stroke') {
                   item.removeAttr('stroke');
                 } else if (attr.name === 'stroke-width' && attr.value === '32') {
-                  item.removeAttr('stroke-width');
-                  item.class.add('ionicon-stroke-width');
+                  // item.removeAttr('stroke-width');
+                  item.addAttr({
+                    name: attr.name,
+                    value: '16',
+                    prefix: '',
+                    local: attr.name,
+                  })
+                  // item.class.add('ionicon-stroke-width');
                 }
               });
             }
@@ -224,7 +230,7 @@ async function createSvgSymbols(version: string, distDir: string, srcSvgData: Sv
     `  fill: none;`,
     `}`,
     `.ionicon-stroke-width {`,
-    `  stroke-width: 32px;`,
+    `  stroke-width: 16px;`,
     `}`,
     `</style>`,
   ];
